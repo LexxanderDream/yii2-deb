@@ -63,9 +63,6 @@ class User extends ActiveRecord
 
 $transaction = new Transaction();
 $transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000);
-
-// display account balance
-echo User::findOne(1)->account->amount;
 ```
 
 **Using custom transaction type:**
