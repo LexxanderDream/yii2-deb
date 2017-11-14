@@ -160,7 +160,7 @@ $account1 = User::findOne(1)->getAccount(Account::TYPE_MAIN);
 $account2 = User::findOne(1)->getAccount(TYPE_CUSTOM);
 
 // system account by type
-$systemAccount1 = Account::get(null, null, TYPE_CUSTOM);
+$systemCustomAccount = Account::get(null, null, TYPE_CUSTOM);
 
 // or you can create your custom account
 class CustomAccount extends Account
@@ -170,4 +170,6 @@ class CustomAccount extends Account
         return self::get(CustomAccount::className(), null, $type)
     }
 }
+
+$customAccount = CustomAccount::getInstance(TYPE_CUSTOM);
 ```
