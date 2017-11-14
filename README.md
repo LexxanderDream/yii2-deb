@@ -65,7 +65,7 @@ class User extends ActiveRecord
     }
 }
 
-// base system account
+// common system account
 $systemAccount = Account::get();
 
 $transaction = new Transaction();
@@ -163,11 +163,11 @@ $account2 = User::findOne(1)->getAccount(TYPE_CUSTOM);
 $systemAccount1 = Account::get(null, null, TYPE_CUSTOM);
 
 // or you can create your custom account
-class CustomSystemAccount extends Account
+class CustomAccount extends Account
 {
     public static getInstance($type = Account::TYPE_MAIN)
     {
-        return self::get(CustomSystemAccount::className(), null, $type)
+        return self::get(CustomAccount::className(), null, $type)
     }
 }
 ```
