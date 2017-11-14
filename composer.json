@@ -1,0 +1,21 @@
+{
+    "name": "lexxanderdream/yii2-deb",
+    "description": "Yii2 Double-entry bookkeeping billing extension",
+    "type": "yii2-extension",
+    "keywords": ["yii2","billing","double-entry"],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Alexander Zhuchkov",
+            "email": "lexxanderdream@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "lexxanderdream\\deb\\": ""
+        }
+    }
+}
