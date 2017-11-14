@@ -95,6 +95,7 @@ $purchase = new Purchase();
 $purchase->market = 'AppStore';
 $purchase->marketTransactionId = 'XXXX-XXXX';
 $purchase->receipt = 'XXXXX-XXXX-XXXX';
+$purchase->productId = 1;
 $purchase->save();
 
 $transaction = new PurchaseProductTransaction($purchase);
@@ -111,7 +112,7 @@ echo $transaction->someData1;
 // or get associated model (for transaction type extended from ActiveRecordTransaction)
 $purchase = $transaction->model;
 ```
-Another more complex example:
+More complex example:
 ```php
 class PurchaseProductTransaction extends ActiveRecordTransaction
 {
@@ -129,6 +130,12 @@ class PurchaseProductTransaction extends ActiveRecordTransaction
         return $this->getModel();
     }
 }
+
+/* @var PurchaseProductTransaction $transaction */
+$transaction = Transaction::findOne(1);
+
+$purchase = $transaction->purchase;
+echo $purchase->productId;
 ```
 
 **Account types**:
