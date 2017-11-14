@@ -37,7 +37,7 @@ use lexxanderdream\deb\Account;
 use lexxanderdream\deb\Transaction;
 
 $senderAccount = Account::get('USER', 1);
-$receiverAccount = Acccount::get('SYSTEM');
+$receiverAccount = Acccount::get('USER', 2);
 
 $transaction = new Transaction();
 $transaction->bill($senderAccount, $receiverAccount, 1000);
@@ -50,7 +50,7 @@ echo $receiverAccount->amount;
 
 ```php
 use lexxanderdream\deb\AccountableBehavior;
-use lexxanderdream\deb\SystemAccount;
+use lexxanderdream\deb\Account;
 
 class User extends ActiveRecord
 {
@@ -65,8 +65,11 @@ class User extends ActiveRecord
     }
 }
 
+// base system account
+$systemAccount = Account::get();
+
 $transaction = new Transaction();
-$transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000);
+$transaction->bill($systemAccount, User::findOne(1)->account, 1000);
 ```
 
 **Using custom transaction type:**
@@ -74,7 +77,7 @@ $transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000
 You can save additional data associated with current transaction in database
 ```php
 use lexxanderdream\deb\Transaction;
-use lexxanderdream\deb\SystemAccount;
+use lexxanderdream\deb\Account;
 
 class CustomTransaction extends Transaction
 {
@@ -84,13 +87,13 @@ class CustomTransaction extends Transaction
 }
 
 $transaction = new CustomTransaction(['someData1' => 'value', 'someData2' => 1]);
-$transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000);
+$transaction->bill(Account::get(), User::findOne(1)->account, 1000);
 ```
 
 You can use ActiveRecord model associated with transaction
 ```php
 use lexxanderdream\deb\ActiveRecordTransaction;
-use lexxanderdream\deb\SystemAccount;
+use lexxanderdream\deb\Account;
 
 class Purcahse extends ActiveRecord
 {
@@ -108,7 +111,7 @@ $purchase->productId = 1;
 $purchase->save();
 
 $transaction = new PurchaseProductTransaction($purchase);
-$transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000);
+$transaction->bill(Account::get(), User::findOne(1)->account, 1000);
 ```
 
 Retrieve custom data from transaction:
@@ -155,4 +158,16 @@ const TYPE_CUSTOM = 1;
 
 $account1 = User::findOne(1)->getAccount(Account::TYPE_MAIN);
 $account2 = User::findOne(1)->getAccount(TYPE_CUSTOM);
+
+// system account by type
+$systemAccount1 = Account::get(null, null, TYPE_CUSTOM);
+
+// or you can create your custom account
+class CustomSystemAccount extends Account
+{
+    public static getInstance($type = Account::TYPE_MAIN)
+    {
+        return self::get(CustomSystemAccount::className(), null, $type)
+    }
+}
 ```

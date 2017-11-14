@@ -109,7 +109,7 @@ class Account extends \yii\db\ActiveRecord
      * @param int $type
      * @return Account
      */
-    public static function get($entity, $entityId = null, $type = self::TYPE_MAIN)
+    public static function get($entity = null, $entityId = null, $type = self::TYPE_MAIN)
     {
         if (!$kind = AccountKind::findOne(['entity' => $entity])) {
             $kind = AccountKind::create($entity);
@@ -120,6 +120,15 @@ class Account extends \yii\db\ActiveRecord
         }
 
         return $account;
+    }
+
+    /**
+     * @param int $type
+     * @return Account
+     */
+    public static function base($type = self::TYPE_MAIN)
+    {
+        return self::get(null, null, $type);
     }
 
 

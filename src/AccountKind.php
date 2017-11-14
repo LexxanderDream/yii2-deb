@@ -26,7 +26,6 @@ class AccountKind extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['entity', 'required'],
             ['entity', 'string'],
         ];
     }
