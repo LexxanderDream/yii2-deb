@@ -1,6 +1,7 @@
 Yii2 DEB
 ========
-Yii2 Double-entry bookkeeping billing extension
+Yii2 Double-entry bookkeeping billing extension.
+Concepts in russian: https://www.youtube.com/watch?v=zs4VUokFtPQ
 
 Installation
 ------------
