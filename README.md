@@ -154,6 +154,8 @@ echo $purchase->productId;
 
 You can also use account types. So one entity can has more than one account:
 ```php
+use lexxanderdream\deb\Account;
+
 const TYPE_CUSTOM = 1;
 
 $account1 = User::findOne(1)->getAccount(Account::TYPE_MAIN);
