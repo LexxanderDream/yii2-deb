@@ -18,7 +18,7 @@ class m171101_105840_create_account_kind extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%account_kind}}', [
+        $this->createTable('{{%deb_account_kind}}', [
             'id'     => $this->primaryKey(),
             'entity' => $this->string(),
         ], $tableOptions);
@@ -31,6 +31,6 @@ class m171101_105840_create_account_kind extends Migration
     public function down()
     {
         // drop table
-        $this->dropTable('{{%account_kind}}');
+        $this->dropTable('{{%deb_account_kind}}');
     }
 }

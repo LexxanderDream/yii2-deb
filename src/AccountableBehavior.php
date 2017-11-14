@@ -8,7 +8,6 @@
 
 namespace lexxanderdream\deb;
 
-use lexxanderdream\deb\models\Account;
 use yii\base\Behavior;
 
 class AccountableBehavior extends Behavior

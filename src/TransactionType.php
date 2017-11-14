@@ -18,7 +18,7 @@ class TransactionType extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%transaction_type}}';
+        return '{{%deb_transaction_type}}';
     }
 
     /**

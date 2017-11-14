@@ -18,28 +18,29 @@ class m171101_105849_create_account_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%account}}', [
-            'id'       => $this->primaryKey(),
-            'kind_id'  => $this->integer()->notNull(),
-            'type'     => $this->integer()->notNull(),
-            'owner_id' => $this->integer(),
-            'amount'   => $this->integer()->notNull()->defaultValue(0),
+        $this->createTable('{{%deb_account}}', [
+            'id'         => $this->primaryKey(),
+            'kind_id'    => $this->integer()->notNull(),
+            'type'       => $this->integer()->notNull(),
+            'owner_id'   => $this->integer(),
+            'amount'     => $this->integer()->notNull()->defaultValue(0),
+            'created_at' => $this->dateTime()->notNull(),
         ], $tableOptions);
 
 
         // create index for column `kind_id`
         $this->createIndex(
             'idx-deb_account-kind_id',
-            '{{%account}}',
+            '{{%deb_account}}',
             'kind_id'
         );
 
         // add foreign key for table `billing_account`
         $this->addForeignKey(
             'fk-deb_account-kind_id',
-            '{{%account}}',
+            '{{%deb_account}}',
             'kind_id',
-            '{{%account_kind}}',
+            '{{%deb_account_kind}}',
             'id',
             'CASCADE'
         );
@@ -48,7 +49,7 @@ class m171101_105849_create_account_table extends Migration
         // creates index for column `kind-owner_id`
         $this->createIndex(
             'idx-deb_account-kind__owner_id',
-            '{{%account}}',
+            '{{%deb_account}}',
             ['kind_id', 'owner_id']
         );
 
@@ -62,22 +63,22 @@ class m171101_105849_create_account_table extends Migration
         // drops foreign key for table `account_kind`
         $this->dropForeignKey(
             'fk-deb_account-kind_id',
-            '{{%account}}'
+            '{{%deb_account}}'
         );
 
         // drops index for column `kind_id`
         $this->dropIndex(
             'idx-deb_account-kind_id',
-            '{{%account}}'
+            '{{%deb_account}}'
         );
 
         // drops index for column `kind-ownerId`
         $this->dropIndex(
             'idx-deb_account-kind__owner_id',
-            '{{%account}}'
+            '{{%deb_account}}'
         );
 
         // drops table
-        $this->dropTable('{{%account}}');
+        $this->dropTable('{{%deb_account}}');
     }
 }

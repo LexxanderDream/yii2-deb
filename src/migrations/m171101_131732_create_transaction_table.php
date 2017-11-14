@@ -18,7 +18,7 @@ class m171101_131732_create_transaction_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%transaction}}', [
+        $this->createTable('{{%deb_transaction}}', [
             'id'                  => $this->primaryKey(),
             'type_id'             => $this->integer()->notNull(),
             'sender_account_id'   => $this->integer()->notNull(),
@@ -31,16 +31,16 @@ class m171101_131732_create_transaction_table extends Migration
         // creates index for column `type_id`
         $this->createIndex(
             'idx-deb_transaction-type_id',
-            '{{%transaction}}',
+            '{{%deb_transaction}}',
             'type_id'
         );
 
         // add foreign key for table `transaction_type`
         $this->addForeignKey(
             'fk-deb_transaction-type_id',
-            '{{%transaction}}',
+            '{{%deb_transaction}}',
             'type_id',
-            '{{%transaction_type}}',
+            '{{%deb_transaction_type}}',
             'id',
             'RESTRICT'
         );
@@ -48,16 +48,16 @@ class m171101_131732_create_transaction_table extends Migration
         // creates index for column `sender_account_id`
         $this->createIndex(
             'idx-deb_transaction-sender_account_id',
-            '{{%transaction}}',
+            '{{%deb_transaction}}',
             'sender_account_id'
         );
 
         // add foreign key for table `account`
         $this->addForeignKey(
             'fk-deb_transaction-sender_account_id',
-            '{{%transaction}}',
+            '{{%deb_transaction}}',
             'sender_account_id',
-            '{{%account}}',
+            '{{%deb_account}}',
             'id',
             'RESTRICT'
         );
@@ -65,16 +65,16 @@ class m171101_131732_create_transaction_table extends Migration
         // creates index for column `receiver_account_id`
         $this->createIndex(
             'idx-deb_transaction-receiver_account_id',
-            '{{%transaction}}',
+            '{{%deb_transaction}}',
             'receiver_account_id'
         );
 
         // add foreign key for table `account`
         $this->addForeignKey(
             'fk-deb_transaction-receiver_account_id',
-            '{{%transaction}}',
+            '{{%deb_transaction}}',
             'receiver_account_id',
-            '{{%account}}',
+            '{{%deb_account}}',
             'id',
             'RESTRICT'
         );
@@ -89,40 +89,40 @@ class m171101_131732_create_transaction_table extends Migration
         // drops foreign key for table `transaction_type`
         $this->dropForeignKey(
             'fk-deb_transaction-type_id',
-            '{{%transaction}}'
+            '{{%deb_transaction}}'
         );
 
         // drops index for column `type_id`
         $this->dropIndex(
             'idx-deb_transaction-type_id',
-            '{{%transaction}}'
+            '{{%deb_transaction}}'
         );
 
         // drops foreign key for table `account`
         $this->dropForeignKey(
             'fk-deb_transaction-sender_account_id',
-            '{{%transaction}}'
+            '{{%deb_transaction}}'
         );
 
         // drops index for column `sender_account_id`
         $this->dropIndex(
             'idx-deb_transaction-sender_account_id',
-            '{{%transaction}}'
+            '{{%deb_transaction}}'
         );
 
 
         // drops foreign key for table `account`
         $this->dropForeignKey(
             'fk-deb_transaction-receiver_account_id',
-            '{{%transaction}}'
+            '{{%deb_transaction}}'
         );
 
         // drops index for column `receiver_account_id`
         $this->dropIndex(
             'idx-deb_transaction-receiver_account_id',
-            '{{%transaction}}'
+            '{{%deb_transaction}}'
         );
 
-        $this->dropTable('{{%transaction}}');
+        $this->dropTable('{{%deb_transaction}}');
     }
 }

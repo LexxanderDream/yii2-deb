@@ -18,7 +18,7 @@ class m171101_132446_create_operation_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%operation}}', [
+        $this->createTable('{{%deb_operation}}', [
             'id'             => $this->primaryKey(),
             'type'           => $this->smallInteger(),
             'account_id'     => $this->integer()->notNull(),
@@ -30,23 +30,23 @@ class m171101_132446_create_operation_table extends Migration
         // creates index for column `account_id`
         $this->createIndex(
             'idx-deb_operation-account_id',
-            '{{%operation}}',
+            '{{%deb_operation}}',
             'account_id'
         );
 
         // creates index for column `transaction_id`
         $this->createIndex(
             'idx-deb_operation-transaction_id',
-            '{{%operation}}',
+            '{{%deb_operation}}',
             'transaction_id'
         );
 
         // add foreign key for table `account`
         $this->addForeignKey(
             'fk-deb_operation-account_id',
-            '{{%operation}}',
+            '{{%deb_operation}}',
             'account_id',
-            '{{account}}',
+            '{{%deb_account}}',
             'id',
             'CASCADE'
         );
@@ -54,9 +54,9 @@ class m171101_132446_create_operation_table extends Migration
         // add foreign key for table `transaction`
         $this->addForeignKey(
             'fk-deb_operation-transaction_id',
-            '{{%operation}}',
+            '{{%deb_operation}}',
             'transaction_id',
-            '{{%transaction}}',
+            '{{%deb_transaction}}',
             'id',
             'CASCADE'
         );
@@ -73,27 +73,27 @@ class m171101_132446_create_operation_table extends Migration
         // drops foreign key for table `account`
         $this->dropForeignKey(
             'fk-deb_operation-account_id',
-            '{{%operation}}'
+            '{{%deb_operation}}'
         );
 
         // drops index for column `sender_account_id`
         $this->dropIndex(
             'idx-deb_operation-account_id',
-            '{{%operation}}'
+            '{{%deb_operation}}'
         );
 
-        // drops foreign key for table `billing_transaction`
+        // drops foreign key for table `transaction`
         $this->dropForeignKey(
             'fk-deb_operation-transaction_id',
-            '{{%operation}}'
+            '{{%deb_operation}}'
         );
 
         // drops index for column `transaction_id`
         $this->dropIndex(
             'idx-deb_operation-transaction_id',
-            '{{%operation}}'
+            '{{%deb_operation}}'
         );
 
-        $this->dropTable('{{%operation}}');
+        $this->dropTable('{{%deb_operation}}');
     }
 }

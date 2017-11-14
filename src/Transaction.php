@@ -30,7 +30,7 @@ class Transaction extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%transaction}}';
+        return '{{%deb_transaction}}';
     }
 
     /**

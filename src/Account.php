@@ -3,7 +3,9 @@
 namespace lexxanderdream\deb;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 use yii\web\ServerErrorHttpException;
 
 /**
@@ -14,6 +16,7 @@ use yii\web\ServerErrorHttpException;
  * @property integer $type
  * @property integer $owner_id
  * @property integer $amount
+ * @property string $created_at
  *
  * @property AccountKind $kind
  * @property ActiveRecord $owner
@@ -29,7 +32,7 @@ class Account extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%account}}';
+        return '{{%deb_account}}';
     }
 
     /**
@@ -49,11 +52,27 @@ class Account extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'       => 'ID',
-            'kind_id'  => 'Kind ID',
-            'type'     => 'Type',
-            'owner_id' => 'Owner ID',
-            'amount'   => 'Amount',
+            'id'         => 'ID',
+            'kind_id'    => 'Kind ID',
+            'type'       => 'Type',
+            'owner_id'   => 'Owner ID',
+            'amount'     => 'Amount',
+            'created_at' => 'Created At',
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class'              => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => false,
+                'value'              => new Expression('NOW()'),
+            ],
         ];
     }
 

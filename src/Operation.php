@@ -30,7 +30,7 @@ class Operation extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%operation}}';
+        return '{{%deb_operation}}';
     }
 
     /**
@@ -56,7 +56,7 @@ class Operation extends \yii\db\ActiveRecord
             'account_id'     => 'Account ID',
             'amount'         => 'Amount',
             'transaction_id' => 'Transaction ID',
-            'created_at'      => 'Created At',
+            'created_at'     => 'Created At',
         ];
     }
 

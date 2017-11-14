@@ -18,7 +18,7 @@ class m171101_105842_create_transaction_type extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%transaction_type}}', [
+        $this->createTable('{{%deb_transaction_type}}', [
             'id'   => $this->primaryKey(),
             'name' => $this->string(),
         ], $tableOptions);
@@ -31,6 +31,6 @@ class m171101_105842_create_transaction_type extends Migration
     public function down()
     {
         // drop table
-        $this->dropTable('{{%transaction_type}}');
+        $this->dropTable('{{%deb_transaction_type}}');
     }
 }
