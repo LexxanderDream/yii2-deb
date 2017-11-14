@@ -147,7 +147,8 @@ $purchase = $transaction->purchase;
 echo $purchase->productId;
 ```
 
-**Account types**:
+**Account types**
+
 You can also use account types. So one entity can has more than one account:
 ```php
 const TYPE_CUSTOM = 1;
