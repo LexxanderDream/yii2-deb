@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist lexxanderdream/yii2-deb "*"
+php composer.phar require --prefer-dist lexxanderdream/yii2-deb "dev-master"
 ```
 
 or add
 
 ```
-"lexxanderdream/yii2-deb": "*"
+"lexxanderdream/yii2-deb": "dev-master"
 ```
 
 to the require section of your `composer.json` file.
@@ -24,7 +24,7 @@ to the require section of your `composer.json` file.
 
 Run migrations
 ```
-yii migrate --migrationPath=@lexxanderdream/yii2-deb/migrations --interactive=0
+yii migrate --migrationPath=@vendor/lexxanderdream/yii2-deb/migrations --interactive=0
 ```
 
 Usage
