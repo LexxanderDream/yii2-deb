@@ -97,7 +97,7 @@ class Purcahse extends ActiveRecord
     ...
 }
 
-// You must create your unique transaction class 
+// It's strongly recommended to create your own unique transaction class for each transaction type
 class PurchaseProductTransaction extends ActiveRecordTransaction { }
 
 $purchase = new Purchase();
