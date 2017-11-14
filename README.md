@@ -158,20 +158,22 @@ use lexxanderdream\deb\Account;
 
 const TYPE_CUSTOM = 1;
 
-$account1 = User::findOne(1)->getAccount(Account::TYPE_MAIN);
-$account2 = User::findOne(1)->getAccount(TYPE_CUSTOM);
+$mainUserAccount = User::findOne(1)->getAccount(Account::TYPE_MAIN);
+$customUserAccount = User::findOne(1)->getAccount(TYPE_CUSTOM);
 
 // system account by type
-$systemCustomAccount = Account::get(null, null, TYPE_CUSTOM);
+$customSystemAccount = Account::get(null, null, TYPE_CUSTOM);
 
 // or you can create your custom account
-class CustomAccount extends Account
+class CustomSystemAccount extends Account
 {
-    public static getInstance($type = Account::TYPE_MAIN)
+    const TYPE_CUSTOM = 1;
+    
+    public static getInstance()
     {
-        return self::get(CustomAccount::className(), null, $type)
+        return self::get(CustomAccount::className(), null, self::TYPE_CUSTOM)
     }
 }
 
-$customAccount = CustomAccount::getInstance(TYPE_CUSTOM);
+$customSystemAccount2 = CustomSystemAccount::getInstance();
 ```
