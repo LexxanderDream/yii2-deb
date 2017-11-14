@@ -85,7 +85,7 @@ $transaction = new CustomTransaction(['someData1' => 'value', 'someData2' => 1])
 $transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000);
 ```
 
-You also can use ActiveRecord model associated with transaction
+You can use ActiveRecord model associated with transaction
 ```php
 use lexxanderdream\deb\models\ActiveRecordTransaction;
 
@@ -100,6 +100,17 @@ $purchase->marketTransactionId = 'XXXX-XXXX';
 $purchase->receipt = 'XXXXX-XXXX-XXXX';
 $purchase->save();
 
-$transaction = new PurchaseTransaction($purchase);
+$transaction = new PurchaseProductTransaction($purchase);
 $transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000);
+```
+
+Retrieve custom data from transaction:
+```php
+    $transaction = Transaction::findOne(1);
+    
+    // display data
+    echo $transaction->someData1;
+    
+    // or get associated model
+    $purchase = $transaction->model;
 ```
