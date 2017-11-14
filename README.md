@@ -40,7 +40,7 @@ $transaction = new Transaction();
 $transaction->bill($senderAccount, $receiverAccount, 1000);
 ```
 
-**or with ``AccountableBehavior``**
+**or with behavior:**
 
 ```php
 use lexxanderdream\deb\behaviors\AccountableBehavior;
@@ -48,7 +48,6 @@ use lexxanderdream\deb\behaviors\AccountableBehavior;
 class User extends ActiveRecord
 {
     ...
-    
     public function behaviors()
     {
         return [
@@ -60,5 +59,22 @@ class User extends ActiveRecord
 }
 
 $transaction = new Transaction();
+$transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000);
+
+// display account balance
+echo User::findOne(1)->account->amount;
+```
+
+**Using custom transaction type:**
+
+```php
+use lexxanderdream\deb\models\Transaction;
+
+class CustomTransaction extends Transaction
+{
+    public $someData;
+}
+
+$transaction = new CustomTransaction(['someData' => 'value']);
 $transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000);
 ```
