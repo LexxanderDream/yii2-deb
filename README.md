@@ -33,6 +33,9 @@ Usage
 **Basic usage:**
 
 ```php
+use lexxanderdream\deb\Account;
+use lexxanderdream\deb\Transaction;
+
 $senderAccount = Account::get('USER', 1);
 $receiverAccount = Acccount::get('SYSTEM');
 
