@@ -22,10 +22,43 @@ or add
 to the require section of your `composer.json` file.
 
 
+Run migrations
+```
+yii migrate --migrationPath=@lexxanderdream/yii2-deb/migrations --interactive=0
+```
+
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
+Simple usage:
 
 ```php
-<?= \lexxanderdream\deb\AutoloadExample::widget(); ?>```
+$senderAccount = Account::get('USER', 1);
+$receiverAccount = Acccount::get('SYSTEM');
+
+$transaction = new Transaction();
+$transaction->bill($senderAccount, $receiverAccount, 1000);
+```
+
+or with ``AccountableBehavior``
+
+```php
+use lexxanderdream\deb\behaviors\AccountableBehavior;
+
+class User extends ActiveRecord
+{
+    ...
+    
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => AccountableBehavior::className()
+            ]
+        ];
+    }
+}
+
+$transaction = new Transaction();
+$transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000);
+```
