@@ -30,7 +30,7 @@ yii migrate --migrationPath=@lexxanderdream/yii2-deb/migrations --interactive=0
 Usage
 -----
 
-Simple usage:
+**Basic usage:**
 
 ```php
 $senderAccount = Account::get('USER', 1);
@@ -40,7 +40,7 @@ $transaction = new Transaction();
 $transaction->bill($senderAccount, $receiverAccount, 1000);
 ```
 
-or with ``AccountableBehavior``
+**or with ``AccountableBehavior``**
 
 ```php
 use lexxanderdream\deb\behaviors\AccountableBehavior;
