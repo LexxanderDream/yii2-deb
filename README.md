@@ -92,10 +92,13 @@ You can use ActiveRecord model associated with transaction
 use lexxanderdream\deb\ActiveRecordTransaction;
 use lexxanderdream\deb\SystemAccount;
 
-class PurchaseProductTransaction extends ActiveRecordTransaction
+class Purcahse extends ActiveRecord
 {
-    
+    ...
 }
+
+class PurchaseProductTransaction extends ActiveRecordTransaction
+{ }
 
 $purchase = new Purchase();
 $purchase->market = 'AppStore';
