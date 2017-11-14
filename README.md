@@ -164,14 +164,14 @@ $customUserAccount = User::findOne(1)->getAccount(TYPE_CUSTOM);
 // system account by type
 $customSystemAccount = Account::get(null, null, TYPE_CUSTOM);
 
-// or you can create your custom account
+// or you can create your custom system account
 class CustomSystemAccount extends Account
 {
     const TYPE_CUSTOM = 1;
     
     public static getInstance()
     {
-        return self::get(CustomAccount::className(), null, self::TYPE_CUSTOM)
+        return self::get(null, null, self::TYPE_CUSTOM)
     }
 }
 
