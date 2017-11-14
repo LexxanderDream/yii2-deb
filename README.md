@@ -106,11 +106,39 @@ $transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000
 
 Retrieve custom data from transaction:
 ```php
-    $transaction = Transaction::findOne(1);
+$transaction = Transaction::findOne(1);
+
+// display data (if transaction type is CustomTransaction)
+echo $transaction->someData1;
+
+// or get associated model (for transaction type extended from ActiveRecordTransaction)
+$purchase = $transaction->model;
+```
+Another more complex example:
+```php
+class PurchaseProductTransaction extends ActiveRecordTransaction
+{
+    // strong typing
+    public function __construct(Purchase $purchase)
+    {
+        parent::__construct($purchase);
+    }
     
-    // display data
-    echo $transaction->someData1;
-    
-    // or get associated model
-    $purchase = $transaction->model;
+    /**
+     * @return Purchase
+     */
+    public function getPurchase()
+    {
+        return $this->getModel();
+    }
+}
+```
+
+**Account types**:
+You can also use account types. So one entity can has more than one account:
+```php
+const TYPE_CUSTOM = 1;
+
+$account1 = User::findOne(1)->getAccount(Account::TYPE_MAIN);
+$account2 = User::findOne(1)->getAccount(TYPE_CUSTOM);
 ```
