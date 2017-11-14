@@ -97,8 +97,8 @@ class Purcahse extends ActiveRecord
     ...
 }
 
-class PurchaseProductTransaction extends ActiveRecordTransaction
-{ }
+// You must create your unique transaction class 
+class PurchaseProductTransaction extends ActiveRecordTransaction { }
 
 $purchase = new Purchase();
 $purchase->market = 'AppStore';
