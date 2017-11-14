@@ -46,7 +46,8 @@ echo $receiverAccount->amount;
 **or with behavior:**
 
 ```php
-use lexxanderdream\deb\behaviors\AccountableBehavior;
+use lexxanderdream\deb\AccountableBehavior;
+use lexxanderdream\deb\SystemAccount;
 
 class User extends ActiveRecord
 {
@@ -69,7 +70,8 @@ $transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000
 
 You can save additional data associated with current transaction in database
 ```php
-use lexxanderdream\deb\models\Transaction;
+use lexxanderdream\deb\Transaction;
+use lexxanderdream\deb\SystemAccount;
 
 class CustomTransaction extends Transaction
 {
@@ -84,7 +86,8 @@ $transaction->bill(SystemAccount::getInstance(), User::findOne(1)->account, 1000
 
 You can use ActiveRecord model associated with transaction
 ```php
-use lexxanderdream\deb\models\ActiveRecordTransaction;
+use lexxanderdream\deb\ActiveRecordTransaction;
+use lexxanderdream\deb\SystemAccount;
 
 class PurchaseProductTransaction extends ActiveRecordTransaction
 {

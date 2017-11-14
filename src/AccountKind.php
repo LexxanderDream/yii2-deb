@@ -1,6 +1,6 @@
 <?php
 
-namespace lexxanderdream\deb\models;
+namespace lexxanderdream\deb;
 
 use Yii;
 use yii\web\ServerErrorHttpException;

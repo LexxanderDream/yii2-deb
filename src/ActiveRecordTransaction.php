@@ -6,7 +6,7 @@
  * Time: 18:42
  */
 
-namespace lexxanderdream\deb\models;
+namespace lexxanderdream\deb;
 
 use yii\db\ActiveRecord;
 

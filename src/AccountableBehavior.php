@@ -6,7 +6,7 @@
  * Time: 17:38
  */
 
-namespace lexxanderdream\deb\behaviors;
+namespace lexxanderdream\deb;
 
 use lexxanderdream\deb\models\Account;
 use yii\base\Behavior;

@@ -7,9 +7,7 @@
  */
 
 
-namespace lexxanderdream\deb\models;
-
-use lexxanderdream\deb\models\Account;
+namespace lexxanderdream\deb;
 
 class SystemAccount extends Account
 {

@@ -1,9 +1,8 @@
 <?php
 
-namespace lexxanderdream\deb\models;
+namespace lexxanderdream\deb;
 
 use Yii;
-use yii\base\Model;
 use yii\db\ActiveRecord;
 use yii\web\ServerErrorHttpException;
 
