@@ -123,16 +123,6 @@ class Account extends \yii\db\ActiveRecord
     }
 
     /**
-     * @param int $type
-     * @return Account
-     */
-    public static function base($type = self::TYPE_MAIN)
-    {
-        return self::get(null, null, $type);
-    }
-
-
-    /**
      * @param integer $kindId
      * @param integer $type
      * @param integer $ownerId
