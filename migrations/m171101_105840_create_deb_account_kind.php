@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `account_kind`.
  */
-class m171101_105840_create_account_kind extends Migration
+class m171101_105840_create_deb_account_kind extends Migration
 {
     /**
      * @inheritdoc
@@ -20,6 +20,7 @@ class m171101_105840_create_account_kind extends Migration
 
         $this->createTable('{{%deb_account_kind}}', [
             'id'     => $this->primaryKey(),
+            'name'   => $this->string(),
             'entity' => $this->string(),
         ], $tableOptions);
 

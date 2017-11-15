@@ -8,7 +8,7 @@ use yii\db\Expression;
 use yii\web\ServerErrorHttpException;
 
 /**
- * This is the model class for table "operation".
+ * This is the model class for table "deb_operation".
  *
  * @property integer $id
  * @property integer $type
@@ -119,18 +119,12 @@ class Operation extends \yii\db\ActiveRecord
      */
     public function afterSave($insert, $changedAttributes)
     {
-        $account = $this->account;
+        $amount = $this->amount;
 
-        switch ($this->type) {
-            // @todo updateCounters
-            case self::TYPE_DEC:
-                $account->updateAttributes(['amount' => new Expression('`amount`-' . $this->amount)]);
-                break;
+        if ($this->type == self::TYPE_DEC)
+            $amount = -1 * $this->amount;
 
-            case self::TYPE_INC:
-                $account->updateAttributes(['amount' => new Expression('`amount`+' . $this->amount)]);
-                break;
-        }
+        $this->account->updateCounters(['amount' => $amount]);
 
         parent::afterSave($insert, $changedAttributes);
     }

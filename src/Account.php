@@ -81,9 +81,9 @@ class Account extends \yii\db\ActiveRecord
     public function getOwner()
     {
         $className = $this->kind->entity;
-        $model = $className::findOne($this->owner_id);
+        $primaryKey = $className::primaryKey();
 
-        return $model;
+        return $this->hasOne($className, [$primaryKey[0] => 'owner_id']);
     }
 
     /**
@@ -100,6 +100,24 @@ class Account extends \yii\db\ActiveRecord
     public function getKind()
     {
         return $this->hasOne(AccountKind::className(), ['id' => 'kind_id']);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        $parts = [];
+        $parts[] = $this->kind->title;
+
+        if ($this->type != self::TYPE_MAIN)
+            $parts[] = $this->type;
+
+        if ($this->kind->entity) {
+            $parts[] = $this->owner->getAccountName();
+        }
+
+        return implode(' : ', $parts);
     }
 
     /**

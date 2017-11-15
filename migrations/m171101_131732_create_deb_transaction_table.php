@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `transaction`.
  */
-class m171101_131732_create_transaction_table extends Migration
+class m171101_131732_create_deb_transaction_table extends Migration
 {
     /**
      * @inheritdoc

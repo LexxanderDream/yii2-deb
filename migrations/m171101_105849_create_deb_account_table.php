@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `account`.
  */
-class m171101_105849_create_account_table extends Migration
+class m171101_105849_create_deb_account_table extends Migration
 {
     /**
      * @inheritdoc
@@ -23,7 +23,7 @@ class m171101_105849_create_account_table extends Migration
             'kind_id'    => $this->integer()->notNull(),
             'type'       => $this->integer()->notNull(),
             'owner_id'   => $this->integer(),
-            'amount'     => $this->integer()->notNull()->defaultValue(0),
+            'amount'     => $this->money(10, 2)->notNull()->defaultValue(0),
             'created_at' => $this->dateTime()->notNull(),
         ], $tableOptions);
 

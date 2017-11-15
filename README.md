@@ -42,7 +42,7 @@ $senderAccount = Account::get('USER', 1);
 $receiverAccount = Acccount::get('USER', 2);
 
 $transaction = new Transaction();
-$transaction->bill($senderAccount, $receiverAccount, 1000);
+$transaction->exec($senderAccount, $receiverAccount, 1000);
 
 echo $senderAccount->amount;
 echo $receiverAccount->amount;
@@ -71,7 +71,7 @@ class User extends ActiveRecord
 $systemAccount = Account::get();
 
 $transaction = new Transaction();
-$transaction->bill($systemAccount, User::findOne(1)->account, 1000);
+$transaction->exec($systemAccount, User::findOne(1)->account, 1000);
 ```
 
 **Using custom transaction type:**
@@ -89,7 +89,7 @@ class CustomTransaction extends Transaction
 }
 
 $transaction = new CustomTransaction(['someData1' => 'value', 'someData2' => 1]);
-$transaction->bill(Account::get(), User::findOne(1)->account, 1000);
+$transaction->exec(Account::get(), User::findOne(1)->account, 1000);
 ```
 
 You can use ActiveRecord model associated with transaction
@@ -113,7 +113,7 @@ $purchase->productId = 1;
 $purchase->save();
 
 $transaction = new PurchaseProductTransaction($purchase);
-$transaction->bill(Account::get(), User::findOne(1)->account, 1000);
+$transaction->exec(Account::get(), User::findOne(1)->account, 1000);
 ```
 
 Retrieve custom data from transaction:

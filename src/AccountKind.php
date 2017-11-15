@@ -9,6 +9,7 @@ use yii\web\ServerErrorHttpException;
  * This is the model class for table "account_kind".
  *
  * @property string $entity
+ * @property string $name
  */
 class AccountKind extends \yii\db\ActiveRecord
 {
@@ -17,7 +18,7 @@ class AccountKind extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%account_kind}}';
+        return '{{%deb_account_kind}}';
     }
 
     /**
@@ -27,6 +28,7 @@ class AccountKind extends \yii\db\ActiveRecord
     {
         return [
             ['entity', 'string'],
+            ['name', 'string'],
         ];
     }
 
@@ -38,18 +40,35 @@ class AccountKind extends \yii\db\ActiveRecord
         return [
             'id'     => 'ID',
             'entity' => 'Entity',
+            'name'   => 'Name',
         ];
     }
 
     /**
-     * @param $entity
+     * @return string
+     */
+    public function getTitle()
+    {
+        if (!empty($this->name))
+            return $this->name;
+
+        if (!empty($this->entity))
+            return $this->entity;
+
+        return 'SYSTEM';
+    }
+
+    /**
+     * @param string $entity
+     * @param string $name
      * @return AccountKind
      * @throws ServerErrorHttpException
      */
-    public static function create($entity)
+    public static function create($entity, $name = '')
     {
         $model = new AccountKind();
         $model->entity = $entity;
+        $model->name = $name;
 
         if (!$model->save())
             throw new ServerErrorHttpException('Failed to create AccountKind');

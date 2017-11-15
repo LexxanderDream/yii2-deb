@@ -9,7 +9,7 @@ use yii\helpers\Json;
 use yii\web\ServerErrorHttpException;
 
 /**
- * This is the model class for table "transaction".
+ * This is the model class for table "deb_transaction".
  *
  * @property integer $id
  * @property integer $type_id
@@ -21,9 +21,10 @@ use yii\web\ServerErrorHttpException;
  *
  * @property Account $receiverAccount
  * @property Account $senderAccount
+ * @property TransactionType $type
  * @property Operation[] $operations
  */
-class Transaction extends \yii\db\ActiveRecord
+class BaseTransaction extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -139,15 +140,15 @@ class Transaction extends \yii\db\ActiveRecord
      * @param Account $senderAccount
      * @param Account $receiverAccount
      * @param $amount
-     * @return Transaction
+     * @return BaseTransaction
      * @throws ServerErrorHttpException
      */
-    public function bill(Account $senderAccount, Account $receiverAccount, $amount)
+    public function exec(Account $senderAccount, Account $receiverAccount, $amount)
     {
         $typeName = self::className();
         $type = TransactionType::get($typeName);
 
-        $model = new Transaction();
+        $model = new BaseTransaction();
         $model->type_id = $type->id;
         $model->sender_account_id = $senderAccount->id;
         $model->receiver_account_id = $receiverAccount->id;
@@ -159,6 +160,17 @@ class Transaction extends \yii\db\ActiveRecord
         }
 
         return $model;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        if (defined('static::TITLE'))
+            return static::TITLE;
+
+        return $this->type->name;
     }
 
     /**

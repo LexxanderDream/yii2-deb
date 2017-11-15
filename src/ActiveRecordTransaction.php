@@ -10,7 +10,7 @@ namespace lexxanderdream\deb;
 
 use yii\db\ActiveRecord;
 
-class ActiveRecordTransaction extends Transaction
+class ActiveRecordTransaction extends BaseTransaction
 {
     /**
      * @var string
