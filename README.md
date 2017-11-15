@@ -103,7 +103,10 @@ class Purcahse extends ActiveRecord
 }
 
 // It's strongly recommended to create your own unique transaction class for each transaction type
-class PurchaseProductTransaction extends ActiveRecordTransaction { }
+class PurchaseProductTransaction extends ActiveRecordTransaction
+{
+    const TITLE = 'Transaction description for CRUD';
+}
 
 $purchase = new Purchase();
 $purchase->market = 'AppStore';
