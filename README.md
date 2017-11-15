@@ -89,6 +89,8 @@ use lexxanderdream\deb\Account;
 
 class CustomTransaction extends Transaction
 {
+    const TITLE = 'Optional transaction description for CRUD';
+    
     public $someData1;
     
     public $someData2;
@@ -109,10 +111,7 @@ class Purcahse extends ActiveRecord
 }
 
 // It's strongly recommended to create your own unique transaction class for each transaction type
-class PurchaseProductTransaction extends ActiveRecordTransaction
-{
-    const TITLE = 'Transaction description for CRUD';
-}
+class PurchaseProductTransaction extends ActiveRecordTransaction { }
 
 $purchase = new Purchase();
 $purchase->market = 'AppStore';
