@@ -87,7 +87,7 @@ $transaction->exec($senderAccount, $receiverAccount, 1000);
 
 **Using custom transaction type:**
 
-You can save additional data associated with current transaction in database
+You can store additional data associated with the current transaction in database using transaction inheritance
 ```php
 use lexxanderdream\deb\Transaction;
 use lexxanderdream\deb\Account;
