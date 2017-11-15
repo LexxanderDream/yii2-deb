@@ -105,18 +105,19 @@ $transaction = new CustomTransaction(['someData1' => 'value', 'someData2' => 1])
 $transaction->exec(Account::get(), User::findOne(1)->account, 1000);
 ```
 
-You can use ActiveRecord model associated with transaction
+Also you can use ActiveRecord model associated with transaction:
 ```php
 use lexxanderdream\deb\ActiveRecordTransaction;
 use lexxanderdream\deb\Account;
 
+// It's strongly recommended to create your own unique transaction class for each transaction type
+class PurchaseProductTransaction extends ActiveRecordTransaction { }
+
+// AR model
 class Purcahse extends ActiveRecord
 {
     ...
 }
-
-// It's strongly recommended to create your own unique transaction class for each transaction type
-class PurchaseProductTransaction extends ActiveRecordTransaction { }
 
 $purchase = new Purchase();
 $purchase->market = 'AppStore';
@@ -126,7 +127,7 @@ $purchase->productId = 1;
 $purchase->save();
 
 $transaction = new PurchaseProductTransaction($purchase);
-$transaction->bill(Account::get(), User::findOne(1)->account, 1000);
+$transaction->exec(Account::get(), User::findOne(1)->account, 1000);
 ```
 
 Retrieve custom data from transaction:
