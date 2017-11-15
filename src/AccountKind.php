@@ -71,7 +71,7 @@ class AccountKind extends \yii\db\ActiveRecord
         $model->name = $name;
 
         if (!$model->save())
-            throw new ServerErrorHttpException('Failed to create AccountKind');
+            throw new Exception('Failed to create AccountKind');
 
         return $model;
     }

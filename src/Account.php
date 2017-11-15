@@ -114,10 +114,10 @@ class Account extends \yii\db\ActiveRecord
             $parts[] = $this->type;
 
         if ($this->kind->entity) {
-            $parts[] = $this->owner->getAccountName();
+            $parts[] = $this->owner_id . ' [' . $this->owner->getAccountName() . ']';
         }
 
-        return implode(' : ', $parts);
+        return implode(' :: ', $parts);
     }
 
     /**
@@ -144,7 +144,7 @@ class Account extends \yii\db\ActiveRecord
      * @param integer $type
      * @param integer $ownerId
      * @return Account
-     * @throws ServerErrorHttpException
+     * @throws Exception
      */
     public static function create($kindId, $type, $ownerId = null)
     {
@@ -155,7 +155,7 @@ class Account extends \yii\db\ActiveRecord
         $model->amount = 0;
 
         if (!$model->save())
-            throw new ServerErrorHttpException('Failed to create BillingAccount');
+            throw new Exception('Failed to create BillingAccount');
 
         return $model;
     }

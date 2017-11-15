@@ -108,7 +108,7 @@ class Operation extends \yii\db\ActiveRecord
         $model->transaction_id = $transactionId;
 
         if (!$model->save())
-            throw new ServerErrorHttpException('Failed to create BillingOperation');
+            throw new Exception('Failed to create BillingOperation');
 
         return $model;
     }

@@ -170,7 +170,7 @@ class Transaction extends \yii\db\ActiveRecord
         $this->amount = $amount;
 
         if (!$this->save()) {
-            throw new ServerErrorHttpException('Failed to create Transaction');
+            throw new Exception('Failed to create Transaction');
         }
 
         return $this;

@@ -66,7 +66,7 @@ class TransactionType extends \yii\db\ActiveRecord
         $model->name = $name;
 
         if (!$model->save())
-            throw new ServerErrorHttpException('Failed to create TransactionType');
+            throw new Exception('Failed to create TransactionType');
 
         return $model;
     }

@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns'      => [
             [
                 'attribute' => 'id',
-                'options'   => ['style' => 'width: 80px;']
+                'options'   => ['style' => 'width: 80px;'],
             ],
             'created_at:datetime',
             [
@@ -36,12 +36,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'sender_account_id',
-                'value' => 'senderAccount.title'
+                'value'     => function ($model) {
+                    return Html::a($model->senderAccount->title, ['account/view', 'id' => $model->sender_account_id]);
+                },
+                'format'    => 'html',
             ],
-
             [
                 'attribute' => 'receiver_account_id',
-                'value' => 'receiverAccount.title'
+                'value'     => function ($model) {
+                    return Html::a($model->receiverAccount->title, ['account/view', 'id' => $model->receiver_account_id]);
+                },
+                'format'    => 'html',
             ],
             'amount',
             ['class' => 'yii\grid\ActionColumn'],
