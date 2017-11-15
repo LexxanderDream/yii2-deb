@@ -63,7 +63,7 @@ class User extends ActiveRecord
         return [
             [
                 'class' => AccountableBehavior::className()
-                // optional account name for CRUD instead Entity ID
+                // optional account name for CRUD
                 'name' => function() {
                     return $this->username;
                 }
