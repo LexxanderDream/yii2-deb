@@ -55,6 +55,9 @@ echo $receiverAccount->amount;
 use lexxanderdream\deb\AccountableBehavior;
 use lexxanderdream\deb\Account;
 
+/**
+* @property Account $account
+*/
 class User extends ActiveRecord
 {
     ...
