@@ -75,7 +75,8 @@ class User extends ActiveRecord
     }
 }
 
-$senderAccount = User::findOne(1)->account
+// now we can retrieve user account through the behavior
+$senderAccount = User::findOne(1)->account;
 
 // default system account
 $receiverAccount = Account::get();
