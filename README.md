@@ -71,11 +71,13 @@ class User extends ActiveRecord
     }
 }
 
-// common system account
-$systemAccount = Account::get();
+// default system account
+$senderAccount = Account::get();
+// through model AccountBehavior
+$receiverAccount = User::findOne(1)->account
 
 $transaction = new Transaction();
-$transaction->exec($systemAccount, User::findOne(1)->account, 1000);
+$transaction->exec($senderAccount, $receiverAccount, 1000);
 ```
 
 **Using custom transaction type:**
