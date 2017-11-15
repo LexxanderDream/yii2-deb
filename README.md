@@ -41,7 +41,7 @@ use lexxanderdream\deb\Transaction;
 $senderAccount = Account::get('USER', 1);
 $receiverAccount = Acccount::get('USER', 2);
 
-// Transaction is the main concept. It describes a business operation in your system.
+// Transaction is the main concept. It describes one business operation in your system.
 $transaction = new Transaction();
 $transaction->exec($senderAccount, $receiverAccount, 1000);
 
