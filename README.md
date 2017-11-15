@@ -180,15 +180,19 @@ class CustomSystemAccount extends Account
 $customSystemAccount2 = CustomSystemAccount::getInstance();
 ```
 
-GUI
----
-To enable GUI you must setup Deb module in your config file (main.php)
+Management
+----------
+To enable CRUD you must setup Deb module in your config file (main.php)
 ```php
+...
 'modules' => [
+    ...
     'deb' => [
         'class' => 'lexxanderdream\deb\Module',
     ]
-]
+    ...
+],
+...
 ```
 
 Then goto url ``/index.php?r=deb/transaction``
