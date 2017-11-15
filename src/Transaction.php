@@ -24,7 +24,7 @@ use yii\web\ServerErrorHttpException;
  * @property TransactionType $type
  * @property Operation[] $operations
  */
-class BaseTransaction extends \yii\db\ActiveRecord
+class Transaction extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -140,7 +140,7 @@ class BaseTransaction extends \yii\db\ActiveRecord
      * @param Account $senderAccount
      * @param Account $receiverAccount
      * @param $amount
-     * @return BaseTransaction
+     * @return Transaction
      * @throws ServerErrorHttpException
      */
     public function exec(Account $senderAccount, Account $receiverAccount, $amount)
@@ -148,7 +148,7 @@ class BaseTransaction extends \yii\db\ActiveRecord
         $typeName = self::className();
         $type = TransactionType::get($typeName);
 
-        $model = new BaseTransaction();
+        $model = new Transaction();
         $model->type_id = $type->id;
         $model->sender_account_id = $senderAccount->id;
         $model->receiver_account_id = $receiverAccount->id;
@@ -168,7 +168,7 @@ class BaseTransaction extends \yii\db\ActiveRecord
     public function getTitle()
     {
         if (defined('static::TITLE'))
-            return static::TITLE;
+            return constant('static::TITLE');
 
         return $this->type->name;
     }

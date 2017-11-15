@@ -5,12 +5,12 @@ namespace lexxanderdream\deb\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use lexxanderdream\deb\BaseTransaction;
+use lexxanderdream\deb\Transaction;
 
 /**
  * TransactionSearch represents the model behind the search form about `lexxanderdream\deb\Transaction`.
  */
-class TransactionSearch extends BaseTransaction
+class TransactionSearch extends Transaction
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class TransactionSearch extends BaseTransaction
      */
     public function search($params)
     {
-        $query = BaseTransaction::find();
+        $query = Transaction::find();
 
         // add conditions that should always apply here
 

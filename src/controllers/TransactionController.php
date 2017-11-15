@@ -3,7 +3,7 @@
 namespace lexxanderdream\deb\controllers;
 
 use Yii;
-use lexxanderdream\deb\BaseTransaction;
+use lexxanderdream\deb\Transaction;
 use lexxanderdream\deb\models\TransactionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -63,7 +63,7 @@ class TransactionController extends Controller
      */
     public function actionCreate()
     {
-        $model = new BaseTransaction();
+        $model = new Transaction();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -110,12 +110,12 @@ class TransactionController extends Controller
      * Finds the Transaction model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return BaseTransaction the loaded model
+     * @return Transaction the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = BaseTransaction::findOne($id)) !== null) {
+        if (($model = Transaction::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

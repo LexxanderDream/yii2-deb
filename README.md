@@ -113,7 +113,7 @@ $purchase->productId = 1;
 $purchase->save();
 
 $transaction = new PurchaseProductTransaction($purchase);
-$transaction->exec(Account::get(), User::findOne(1)->account, 1000);
+$transaction->bill(Account::get(), User::findOne(1)->account, 1000);
 ```
 
 Retrieve custom data from transaction:
@@ -179,3 +179,17 @@ class CustomSystemAccount extends Account
 
 $customSystemAccount2 = CustomSystemAccount::getInstance();
 ```
+
+GUI
+---
+To enable GUI you must setup Deb module in your config file (main.php)
+```php
+'modules' => [
+    'deb' => [
+        'class' => 'lexxanderdream\deb\Module',
+    ]
+]
+```
+
+Then goto url ``/index.php?r=deb/transaction``
+
