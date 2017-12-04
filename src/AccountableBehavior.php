@@ -23,13 +23,19 @@ class AccountableBehavior extends Behavior
     public $name;
 
     /**
+     * @var string
+     */
+    public $entity;
+
+    /**
      * @param int $type
      * @return Account
      */
     public function getAccount($type = Account::TYPE_MAIN)
     {
         $owner = $this->owner;
-        $entity = $owner::className();
+        if (!$this->entity)
+            $entity = $owner::className();
         $primaryKey = $owner::primaryKey();
 
 
