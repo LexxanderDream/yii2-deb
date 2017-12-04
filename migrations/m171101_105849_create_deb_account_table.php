@@ -42,7 +42,7 @@ class m171101_105849_create_deb_account_table extends Migration
             'kind_id',
             '{{%deb_account_kind}}',
             'id',
-            'CASCADE'
+            'RESTRICT'
         );
 
 
