@@ -35,11 +35,12 @@ class AccountableBehavior extends Behavior
     {
         $owner = $this->owner;
         if (!$this->entity)
-            $entity = $owner::className();
+            $this->entity = $owner::className();
+
         $primaryKey = $owner::primaryKey();
 
 
-        return Account::get($entity, $owner->{$primaryKey[0]}, $type);
+        return Account::get($this->entity, $owner->{$primaryKey[0]}, $type);
     }
 
     /**
